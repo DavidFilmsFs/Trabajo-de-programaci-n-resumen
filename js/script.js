@@ -128,7 +128,72 @@ const peliculaEncontrada = peliculas.find(
 console.log("4. Pelicula encontrada:");
 console.log(peliculaEncontrada);
 
+// 5. Recorrer todo el arreglo con forEach y agregar con push si no existe
+const peliculaParaAgregar = {
+  name: "El planeta del tesoro",
+  director: "Ron Clements y John Musker",
+  year: 2002,
+  type: "Animacion",
+  actors: "Joseph Gordon-Levitt y Emma Thompson"
+};
 
+function agregarPeliculaSiNoExiste(peliculaNueva) {
+  let peliculaYaExiste = false;
 
+  peliculas.forEach(pelicula => {
+    if (pelicula.name === peliculaNueva.name) {
+      peliculaYaExiste = true;
+    }
+  });
 
+  if (peliculaYaExiste) {
+    console.log("5. La pelicula ya existe y no se agrego:");
+  } else {
+    peliculas.push(peliculaNueva);
+    console.log("5. Pelicula agregada con forEach y push:");
+  }
+  console.log(peliculaNueva);
+}
+
+agregarPeliculaSiNoExiste(peliculaParaAgregar);
+agregarPeliculaSiNoExiste(peliculaParaAgregar);
+
+// 6. Operaciones CRUD: crear, leer, actualizar y eliminar
+const peliculaCRUD = {
+  name: "Interstellar",
+  director: "Christopher Nolan",
+  year: 2014,
+  type: "Ciencia ficcion",
+  actors: "Matthew McConaughey y Anne Hathaway"
+};
+
+// Crear
+peliculas.push(peliculaCRUD);
+console.log("6. CRUD - Crear:");
+console.log(peliculaCRUD);
+
+// Leer
+const peliculaLeida = peliculas.find(
+  pelicula => pelicula.name === "Interstellar"
+);
+console.log("6. CRUD - Leer:");
+console.log(peliculaLeida);
+
+// Actualizar
+if (peliculaLeida) {
+  peliculaLeida.year = 2015;
+  console.log("6. CRUD - Actualizar (nuevo año):");
+  console.log(peliculaLeida);
+}
+
+// Eliminar
+const indicePelicula = peliculas.findIndex(
+  pelicula => pelicula.name === "Interstellar"
+);
+
+if (indicePelicula !== -1) {
+  const peliculaEliminada = peliculas.splice(indicePelicula, 1);
+  console.log("6. CRUD - Eliminar:");
+  console.log(peliculaEliminada[0]);
+}
 
